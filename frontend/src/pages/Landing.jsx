@@ -1,6 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 export default function Landing() {
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    // Auto-redirect if already logged in
+    useEffect(() => {
+        if (user) {
+            if (user.role === 'counselor') {
+                navigate('/dashboard-counselor');
+            } else {
+                navigate('/dashboard');
+            }
+        }
+    }, [user, navigate]);
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-brand-50 via-white to-brand-50 overflow-hidden font-sans text-dark-800">
             {/* Navbar */}
