@@ -13,7 +13,7 @@ class DashboardController extends Controller
     public function counselorStats()
     {
         // Total Users
-        $totalUsers = User::where('role', 'user')->count();
+        $totalUsers = User::where('role', 'student')->count();
 
         // Assessments Today
         $assessmentsToday = TestResult::whereDate('created_at', today())->count();
@@ -64,7 +64,7 @@ class DashboardController extends Controller
 
     public function getUsersList()
     {
-        $users = User::where('role', 'user')
+        $users = User::where('role', 'student')
             ->with(['testResults' => function($q) {
                 $q->latest()->take(1); 
             }])
