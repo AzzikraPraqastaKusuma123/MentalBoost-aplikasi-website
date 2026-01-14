@@ -18,31 +18,31 @@ class DassSeeder extends Seeder
 
         $questions = [
             // Stress
-            ['question' => 'I found it hard to wind down', 'category' => 'stress'],
-            ['question' => 'I tended to over-react to situations', 'category' => 'stress'],
-            ['question' => 'I felt that I was using a lot of nervous energy', 'category' => 'stress'],
-            ['question' => 'I found myself getting agitated', 'category' => 'stress'],
-            ['question' => 'I found it difficult to relax', 'category' => 'stress'],
-            ['question' => 'I was intolerant of anything that kept me from getting on with what I was doing', 'category' => 'stress'],
-            ['question' => 'I felt that I was rather touchy', 'category' => 'stress'],
+            ['question' => 'Saya merasa sulit untuk menenangkan diri', 'category' => 'stress'],
+            ['question' => 'Saya cenderung bereaksi berlebihan terhadap situasi', 'category' => 'stress'],
+            ['question' => 'Saya merasa menghabiskan banyak energi karena cemas', 'category' => 'stress'],
+            ['question' => 'Saya merasa mudah gelisah', 'category' => 'stress'],
+            ['question' => 'Saya merasa sulit untuk rileks', 'category' => 'stress'],
+            ['question' => 'Saya tidak sabaran dengan gangguan saat sedang sibuk', 'category' => 'stress'],
+            ['question' => 'Saya merasa mudah tersinggung', 'category' => 'stress'],
 
             // Anxiety
-            ['question' => 'I was aware of dryness of my mouth', 'category' => 'anxiety'],
-            ['question' => 'I experienced breathing difficulty (e.g. excessively rapid breathing, breathlessness in the absence of physical exertion)', 'category' => 'anxiety'],
-            ['question' => 'I experienced trembling (e.g. in the hands)', 'category' => 'anxiety'],
-            ['question' => 'I was worried about situations in which I might panic and make a fool of myself', 'category' => 'anxiety'],
-            ['question' => 'I felt I was close to panic', 'category' => 'anxiety'],
-            ['question' => 'I felt scared without any good reason', 'category' => 'anxiety'],
-            ['question' => 'I felt my heart absent or missing a beat', 'category' => 'anxiety'],
+            ['question' => 'Saya menyadari mulut saya kering', 'category' => 'anxiety'],
+            ['question' => 'Saya mengalami kesulitan bernapas (misal: napas cepat)', 'category' => 'anxiety'],
+            ['question' => 'Saya mengalami gemetar (misal: pada tangan)', 'category' => 'anxiety'],
+            ['question' => 'Saya khawatir akan situasi di mana saya mungkin panik', 'category' => 'anxiety'],
+            ['question' => 'Saya merasa hampir panik', 'category' => 'anxiety'],
+            ['question' => 'Saya merasa takut tanpa alasan yang jelas', 'category' => 'anxiety'],
+            ['question' => 'Saya merasakan jantung berdebar-debar', 'category' => 'anxiety'],
 
             // Depression
-            ['question' => 'I couldn\'t seem to experience any positive feeling at all', 'category' => 'depression'],
-            ['question' => 'I found it difficult to work up the initiative to do things', 'category' => 'depression'],
-            ['question' => 'I felt that I had nothing to look forward to', 'category' => 'depression'],
-            ['question' => 'I felt down-hearted and blue', 'category' => 'depression'],
-            ['question' => 'I was unable to become enthusiastic about anything', 'category' => 'depression'],
-            ['question' => 'I felt I wasn\'t worth much as a person', 'category' => 'depression'],
-            ['question' => 'I felt that life was meaningless', 'category' => 'depression'],
+            ['question' => 'Saya tidak bisa merasakan perasaan positif sama sekali', 'category' => 'depression'],
+            ['question' => 'Saya sulit berinisiatif untuk melakukan sesuatu', 'category' => 'depression'],
+            ['question' => 'Saya merasa tidak ada yang bisa dinantikan', 'category' => 'depression'],
+            ['question' => 'Saya merasa sedih dan murung', 'category' => 'depression'],
+            ['question' => 'Saya tidak antusias terhadap apa pun', 'category' => 'depression'],
+            ['question' => 'Saya merasa tidak berharga sebagai seseorang', 'category' => 'depression'],
+            ['question' => 'Saya merasa hidup ini tidak ada artinya', 'category' => 'depression'],
         ];
 
         foreach ($questions as $index => $q) {

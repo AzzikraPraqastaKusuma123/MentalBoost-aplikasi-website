@@ -10,6 +10,9 @@ import Landing from './pages/Landing';
 import UserConsultation from './pages/UserConsultation';
 import CounselorDashboard from './pages/CounselorDashboard';
 import CounselorChat from './pages/CounselorChat';
+import CounselorProfile from './pages/CounselorProfile';
+import UserProfile from './pages/UserProfile';
+import ManageTest from './pages/ManageTest';
 import Layout from './components/Layout';
 
 import { Toaster } from 'react-hot-toast';
@@ -36,6 +39,9 @@ function App() {
               <Route path="/consultation" element={<UserConsultation />} />
               <Route path="/dashboard-counselor" element={<CounselorDashboard />} />
               <Route path="/chat-counselor" element={<CounselorChat />} />
+              <Route path="/profile-counselor" element={<CounselorProfile />} />
+              <Route path="/profile" element={<UserProfile />} />
+              <Route path="/manage-test" element={<ManageTest />} />
             </Route>
           </Routes>
         </ChatProvider>

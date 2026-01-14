@@ -43,8 +43,16 @@ export default function UserConsultation() {
                                 </span>
                             )}
 
-                            <div className="w-20 h-20 mx-auto bg-brand-100 rounded-full flex items-center justify-center text-3xl mb-4">
-                                👨‍⚕️
+                            <div className="w-20 h-20 mx-auto bg-brand-100 rounded-full flex items-center justify-center text-3xl mb-4 overflow-hidden border-2 border-white shadow-md">
+                                {counselor.avatar ? (
+                                    <img
+                                        src={`http://localhost:8000/storage/${counselor.avatar}`}
+                                        alt={counselor.name}
+                                        className="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <span>👨‍⚕️</span>
+                                )}
                             </div>
                             <h3 className="font-bold text-xl text-gray-900">{counselor.name}</h3>
                             <p className="text-brand-600 font-medium mb-2">Konselor Profesional</p>

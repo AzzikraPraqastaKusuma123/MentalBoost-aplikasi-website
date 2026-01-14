@@ -1,40 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import api from '../api/axios';
 import { useNavigate } from 'react-router-dom';
 
-const QUESTIONS = [
-    // Stress
-    { id: 1, text: 'Saya merasa sulit untuk menenangkan diri', category: 'stress' },
-    { id: 2, text: 'Saya cenderung bereaksi berlebihan terhadap situasi', category: 'stress' },
-    { id: 3, text: 'Saya merasa menghabiskan banyak energi karena cemas', category: 'stress' },
-    { id: 4, text: 'Saya merasa mudah gelisah', category: 'stress' },
-    { id: 5, text: 'Saya merasa sulit untuk rileks', category: 'stress' },
-    { id: 6, text: 'Saya tidak sabaran dengan gangguan saat sedang sibuk', category: 'stress' },
-    { id: 7, text: 'Saya merasa mudah tersinggung', category: 'stress' },
-
-    // Anxiety
-    { id: 8, text: 'Saya menyadari mulut saya kering', category: 'anxiety' },
-    { id: 9, text: 'Saya mengalami kesulitan bernapas (misal: napas cepat)', category: 'anxiety' },
-    { id: 10, text: 'Saya mengalami gemetar (misal: pada tangan)', category: 'anxiety' },
-    { id: 11, text: 'Saya khawatir akan situasi di mana saya mungkin panik', category: 'anxiety' },
-    { id: 12, text: 'Saya merasa hampir panik', category: 'anxiety' },
-    { id: 13, text: 'Saya merasa takut tanpa alasan yang jelas', category: 'anxiety' },
-    { id: 14, text: 'Saya merasakan jantung berdebar-debar', category: 'anxiety' },
-
-    // Depression
-    { id: 15, text: 'Saya tidak bisa merasakan perasaan positif sama sekali', category: 'depression' },
-    { id: 16, text: 'Saya sulit berinisiatif untuk melakukan sesuatu', category: 'depression' },
-    { id: 17, text: 'Saya merasa tidak ada yang bisa dinantikan', category: 'depression' },
-    { id: 18, text: 'Saya merasa sedih dan murung', category: 'depression' },
-    { id: 19, text: 'Saya tidak antusias terhadap apa pun', category: 'depression' },
-    { id: 20, text: 'Saya merasa tidak berharga sebagai seseorang', category: 'depression' },
-    { id: 21, text: 'Saya merasa hidup ini tidak ada artinya', category: 'depression' },
-];
-
 export default function Questionnaire() {
+    const [questions, setQuestions] = useState([]);
     const [answers, setAnswers] = useState({});
     const [submitting, setSubmitting] = useState(false);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchQuestions = async () => {
+            try {
+                const { data } = await api.get('/questions');
+                setQuestions(data.data);
+            } catch (error) {
+                console.error("Failed to fetch questions", error);
+                alert("Gagal memuat pertanyaan tes. Silakan refresh halaman.");
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchQuestions();
+    }, []);
 
     const handleChange = (questionId, value) => {
         setAnswers({ ...answers, [questionId]: parseInt(value) });
@@ -56,15 +44,17 @@ export default function Questionnaire() {
             navigate('/dashboard');
         } catch (error) {
             console.error(error);
-            alert('Failed to submit test');
+            alert('Gagal mengirim hasil tes. Coba lagi.');
         } finally {
             setSubmitting(false);
         }
     };
 
     const answeredCount = Object.keys(answers).length;
-    const totalQuestions = QUESTIONS.length;
-    const progress = (answeredCount / totalQuestions) * 100;
+    const totalQuestions = questions.length;
+    const progress = totalQuestions > 0 ? (answeredCount / totalQuestions) * 100 : 0;
+
+    if (loading) return <div className="flex h-screen items-center justify-center text-brand-600 font-medium">Memuat Soal Tes...</div>;
 
     return (
         <div className="max-w-4xl mx-auto animate-fade-in pb-10">
@@ -81,14 +71,14 @@ export default function Questionnaire() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-                {QUESTIONS.map((q, index) => (
+                {questions.map((q, index) => (
                     <div key={q.id} className="glass-card p-6 transition-all duration-300 hover:shadow-lg hover:border-brand-200">
                         <div className="flex items-start">
                             <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-brand-100 text-brand-700 rounded-full font-bold text-sm mr-4">
                                 {index + 1}
                             </span>
                             <div className="flex-1">
-                                <p className="text-lg font-medium text-dark-800 mb-4">{q.text}</p>
+                                <p className="text-lg font-medium text-dark-800 mb-4">{q.question}</p>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                                     {[
                                         { val: 0, label: 'Tidak Pernah' },
